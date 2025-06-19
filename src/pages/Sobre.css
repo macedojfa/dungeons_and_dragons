@@ -1,0 +1,20 @@
+.sobre-container {
+    padding-bottom: 40px; /* Adiciona espaço abaixo do último card */
+}
+
+.sobre-container .card-header {
+    background-color: #f8f9fa;
+    font-family: 'Georgia', serif;
+}
+
+.sobre-container pre {
+    background-color: #e9ecef;
+    padding: 1rem;
+    border-radius: .25rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.sobre-container strong {
+    color: #343a40;
+}
