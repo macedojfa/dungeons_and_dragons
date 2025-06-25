@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import './index.css';
 
 function Footer(props) {
 
@@ -24,32 +25,7 @@ function Footer(props) {
     }
 
 
-    /* 
-
-    return (
-<>
-ternario  
-{contagem < 10 ? (
-    <div className="geral">
-        <div className="alert alert-primary" role="alert">
-            Rodapé Alerta!
-
-            <p>Instagram: {props.insta} </p>
-            <p>Whats: {props.whats} </p>
-        </div>
-
-        <button onClick={apresentaMenu}>Contar</button>
-        <p> Total de visitas ao App: {contagem} </p>
-
-    </div>
-
-) : <p> maior que 10</p>
-}
-</>
-);
-    */
-
-    return (
+     return (
         contagem < 10 ? (
 <>
             <h1> Pagina com o Footer </h1>

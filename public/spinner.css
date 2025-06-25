@@ -4,8 +4,13 @@
   flex-direction: column; 
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #282c34;
+  height: 100%; /* Alterado de 100vh para 100% */
+  width: 100%; /* Adicionado para garantir que ocupa toda a largura */
+  position: fixed; /* Alterado para fixed */
+  top: 0; /* Adicionado para garantir que fique no topo da tela */
+  left: 0; /* Adicionado para garantir que comece no lado esquerdo */
+  background-color: rgba(40, 44, 52, 0.8); /* Alterado para um fundo semi-transparente */
+  z-index: 1000; /* Adicionado para garantir que fique acima de outros elementos */
 }
 
 

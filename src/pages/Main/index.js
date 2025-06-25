@@ -48,15 +48,7 @@ function Main() {
                         <p class="card-text">Texto do card.</p>
                     </div>
                 </div>
-
-
-
             </div>
-
-
-
-
-
             <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Accordion Item #1</Accordion.Header>

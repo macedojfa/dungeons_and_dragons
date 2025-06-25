@@ -1,21 +1,19 @@
-import './App.css';
+import './index.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import Login from '../Login';
+
+import Main from '../Main';
+import Footer from '../Footer';
+import NotFound from '../NotFound';
+import Menu from '../Menu';
+import Sobre from '../Sobre';
 
 
-import Login from './pages/Login';
-
-import Main from './pages/Main';
-import Footer from './pages/Footer';
-import NotFound from './pages/NotFound';
-import Menu from './pages/Menu';
-import Sobre from './pages/Sobre';
-
-
-import DnDSpells from './pages/DnDSpells';
-import DnDEquipment from './pages/DnDEquipment';
-import DnDCharacterViewer from './pages/DnDCharacterViewer'; 
-import DnDMonsters from './pages/DnDMonsters'; 
+import DnDSpells from '../DnDSpells';
+import DnDEquipment from '../DnDEquipment';
+import DnDCharacterViewer from '../DnDCharacterViewer'; 
+import DnDMonsters from '../DnDMonsters'; 
 
 function PrivateRoute({ children }) {
   const isAuthenticated = localStorage.getItem("auth") === "true";
@@ -39,10 +37,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
-
         <Route path="/login" element={<Login onLoginSuccess={handleLogin} />} />
-
-        {/* Rotas protegidas com layout */}
         <Route
           path="*"
           element={

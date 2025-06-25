@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Container, Nav, Navbar, Button } from 'react-bootstrap';
-import logox from './logo.svg';
+import logox from '../../assets/logo.png';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import "./index.css"
 import emailjs from '@emailjs/browser';
 import {
     FaScroll,
@@ -83,8 +84,8 @@ const Menu = ({ children }) => {
 
     return (
         <>
-            <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark">
-                <Container>
+            <Navbar expand="lg" className="bg-body-tertiary" id='header' >
+                <Container className='header'>
                     <Navbar.Brand as={Link} to="/dnd-character-viewer">
                         <img className='App-logo' src={logox} width={60} alt=" logo " /> App DnD
                     </Navbar.Brand>

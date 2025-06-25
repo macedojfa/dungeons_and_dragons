@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import './index.css';
 import axios from 'axios';
-import emailjs from '@emailjs/browser'; 
-import { Container, Form, Card, Row, Col, Spinner, Alert, Button } from 'react-bootstrap'; 
+import emailjs from '@emailjs/browser';
+import { Container, Form, Card, Row, Col, Spinner, Alert, Button } from 'react-bootstrap';
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -60,7 +61,7 @@ function DnDCharacterViewer() {
     buscarDadosIniciais();
   }, []);
 
-  
+
   const buscarDetalhesRaca = async (url) => {
     if (!url) {
       setRacaSelecionada(null);
@@ -75,8 +76,8 @@ function DnDCharacterViewer() {
       setErro("Falha ao carregar detalhes da raça.");
     } finally {
       //setCarregando(false);
-      await sleep(4000); 
-    setCarregando(false);
+      await sleep(4000);
+      setCarregando(false);
     }
   };
 
@@ -94,8 +95,8 @@ function DnDCharacterViewer() {
       setErro("Falha ao carregar detalhes da classe.");
     } finally {
       //setCarregando(false);
-      await sleep(4000); 
-    setCarregando(false);
+      await sleep(4000);
+      setCarregando(false);
     }
   };
 
@@ -112,9 +113,9 @@ function DnDCharacterViewer() {
       console.error("Erro ao buscar detalhes do plano de fundo:", err);
       setErro("Falha ao carregar detalhes do plano de fundo.");
     } finally {
-    //setCarregando(false);
+      //setCarregando(false);
       await sleep(4000);
-    setCarregando(false);
+      setCarregando(false);
     }
   };
 
@@ -132,8 +133,8 @@ function DnDCharacterViewer() {
       setErro("Falha ao carregar detalhes do alinhamento.");
     } finally {
       //setCarregando(false);
-      await sleep(4000); 
-    setCarregando(false);
+      await sleep(4000);
+      setCarregando(false);
     }
   };
 
@@ -165,7 +166,7 @@ function DnDCharacterViewer() {
     ...(racaSelecionada?.languages || []).map(l => l.name)
   ])).sort();
 
-  
+
   const enviarEmail = async () => {
     if (!nomeUsuario || !emailUsuario) {
       alert('Por favor, preencha seu nome e e-mail para enviar.');
@@ -209,29 +210,29 @@ function DnDCharacterViewer() {
     }
 
     if (planoDeFundoSelecionado) {
-        emailMessage += `--- Plano de Fundo: ${planoDeFundoSelecionado.name} ---\n`;
-        if (planoDeFundoSelecionado.starting_proficiencies && planoDeFundoSelecionado.starting_proficiencies.length > 0) {
-            emailMessage += `  Proficiências Iniciais: ${planoDeFundoSelecionado.starting_proficiencies.map(p => p.name.replace('Skill: ', '')).join(', ')}\n`;
-        }
-        if (planoDeFundoSelecionado.feature) {
-            emailMessage += `  Característica: ${planoDeFundoSelecionado.feature.name}\n`;
-            emailMessage += `    ${planoDeFundoSelecionado.feature.desc.join('\n    ')}\n`;
-        }
-        emailMessage += `\n`;
+      emailMessage += `--- Plano de Fundo: ${planoDeFundoSelecionado.name} ---\n`;
+      if (planoDeFundoSelecionado.starting_proficiencies && planoDeFundoSelecionado.starting_proficiencies.length > 0) {
+        emailMessage += `  Proficiências Iniciais: ${planoDeFundoSelecionado.starting_proficiencies.map(p => p.name.replace('Skill: ', '')).join(', ')}\n`;
+      }
+      if (planoDeFundoSelecionado.feature) {
+        emailMessage += `  Característica: ${planoDeFundoSelecionado.feature.name}\n`;
+        emailMessage += `    ${planoDeFundoSelecionado.feature.desc.join('\n    ')}\n`;
+      }
+      emailMessage += `\n`;
     }
 
     if (alinhamentoSelecionado) {
-        emailMessage += `--- Alinhamento: ${alinhamentoSelecionado.name} ---\n`;
-        emailMessage += `  Descrição: ${alinhamentoSelecionado.desc}\n`;
-        emailMessage += `\n`;
+      emailMessage += `--- Alinhamento: ${alinhamentoSelecionado.name} ---\n`;
+      emailMessage += `  Descrição: ${alinhamentoSelecionado.desc}\n`;
+      emailMessage += `\n`;
     }
 
     if (habilidadesDisponiveis.length > 0) {
-        emailMessage += `--- Valores de Habilidade (Descrição Geral) ---\n`;
-        habilidadesDisponiveis.forEach(hab => {
-            emailMessage += `  ${hab.full_name}: ${hab.desc ? hab.desc[0] : 'N/A'}\n`;
-        });
-        emailMessage += `\n`;
+      emailMessage += `--- Valores de Habilidade (Descrição Geral) ---\n`;
+      habilidadesDisponiveis.forEach(hab => {
+        emailMessage += `  ${hab.full_name}: ${hab.desc ? hab.desc[0] : 'N/A'}\n`;
+      });
+      emailMessage += `\n`;
     }
 
     if (proficienciasCombinadas.length > 0) {
@@ -247,17 +248,17 @@ function DnDCharacterViewer() {
 
     try {
       await emailjs.send(
-        "service_h82hgf8", 
-        "template_7gkh8j3", 
+        "service_h82hgf8",
+        "template_7gkh8j3",
         {
           name: nomeUsuario,
           email: emailUsuario,
           message: emailMessage,
         },
-        "3RzX9QMnCDjcuV0y_" 
+        "3RzX9QMnCDjcuV0y_"
       );
       alert('E-mail com os detalhes do personagem enviado com sucesso!');
-     
+
       setNomeUsuario('');
       setEmailUsuario('');
     } catch (error) {
@@ -267,19 +268,16 @@ function DnDCharacterViewer() {
   };
 
 
-  if (carregando) {
-    return (
-      <Container className="mt-4 text-center">
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Carregando dados de personagem...</span>
-        </Spinner>
-        <p>Carregando dados de personagem...</p>
-      </Container>
-    );
-  }
 
   return (
     <Container className="mt-4">
+      {carregando && (<Container className="mt-4 text-center spinner-center">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Carregando dados de personagem...</span>
+        </Spinner>
+        <p>Carregando ...</p>
+      </Container>)}
+
       <h2>🧙 Detalhes do Personagem D&D 5e</h2>
 
       {erro && <Alert variant="danger">{erro}</Alert>}
@@ -339,38 +337,38 @@ function DnDCharacterViewer() {
         </Col>
       </Row>
 
-      
+
       <Row className="mb-4">
         <Col md={6}>
           <Form.Group controlId="formNomeUsuario">
             <Form.Label>Seu Nome:</Form.Label>
-            <Form.Control 
-              type="text" 
-              placeholder="Digite seu nome" 
-              value={nomeUsuario} 
-              onChange={(e) => setNomeUsuario(e.target.value)} 
-              required 
+            <Form.Control
+              type="text"
+              placeholder="Digite seu nome"
+              value={nomeUsuario}
+              onChange={(e) => setNomeUsuario(e.target.value)}
+              required
             />
           </Form.Group>
         </Col>
         <Col md={6}>
           <Form.Group controlId="formEmailUsuario">
             <Form.Label>Seu E-mail:</Form.Label>
-            <Form.Control 
-              type="email" 
-              placeholder="Digite seu e-mail" 
-              value={emailUsuario} 
-              onChange={(e) => setEmailUsuario(e.target.value)} 
-              required 
+            <Form.Control
+              type="email"
+              placeholder="Digite seu e-mail"
+              value={emailUsuario}
+              onChange={(e) => setEmailUsuario(e.target.value)}
+              required
             />
           </Form.Group>
         </Col>
       </Row>
 
-      <Button 
-        variant="primary" 
-        onClick={enviarEmail} 
-        className="mb-4"
+      <Button
+        variant="primary"
+        onClick={enviarEmail}
+        className="mb-4 primary-bt"
         disabled={!nomeUsuario || !emailUsuario || (!racaSelecionada && !classeSelecionada && !planoDeFundoSelecionado && !alinhamentoSelecionado)}
       >
         Enviar Informações por Email
@@ -392,14 +390,14 @@ function DnDCharacterViewer() {
           </Card>
         </Col>
         <Col md={6}>
-            {alinhamentoSelecionado && (
-                <Card className="mb-3">
-                    <Card.Header><h4>Alinhamento: {alinhamentoSelecionado.name}</h4></Card.Header>
-                    <Card.Body>
-                        <p>{alinhamentoSelecionado.desc}</p>
-                    </Card.Body>
-                </Card>
-            )}
+          {alinhamentoSelecionado && (
+            <Card className="mb-3">
+              <Card.Header><h4>Alinhamento: {alinhamentoSelecionado.name}</h4></Card.Header>
+              <Card.Body>
+                <p>{alinhamentoSelecionado.desc}</p>
+              </Card.Body>
+            </Card>
+          )}
         </Col>
       </Row>
 
@@ -419,14 +417,14 @@ function DnDCharacterViewer() {
                 )}
                 <p><strong>Idiomas (da Raça):</strong> {idiomasCombinados.join(', ') || 'N/A'}</p>
                 {racaSelecionada.traits && racaSelecionada.traits.length > 0 && (
-                    <>
+                  <>
                     <h6>Traços Raciais:</h6>
                     <ul>
-                        {racaSelecionada.traits.map((trait, idx) => (
-                            <li key={idx}>{trait.name}</li>
-                        ))}
+                      {racaSelecionada.traits.map((trait, idx) => (
+                        <li key={idx}>{trait.name}</li>
+                      ))}
                     </ul>
-                    </>
+                  </>
                 )}
               </Card.Body>
             </Card>
@@ -444,22 +442,22 @@ function DnDCharacterViewer() {
                     {classeSelecionada.proficiencies.map(p => p.name.replace('Skill: ', '')).join(', ')}
                   </p>
                 )}
-                 {classeSelecionada.saving_throws && classeSelecionada.saving_throws.length > 0 && (
-                    <p>
-                      <strong>Testes de Resistência:</strong>{' '}
-                      {classeSelecionada.saving_throws.map(st => st.name).join(', ')}
-                    </p>
-                  )}
-                 {classeSelecionada.subclasses && classeSelecionada.subclasses.length > 0 && (
-                    <>
-                      <h6>Subclasses:</h6>
-                      <ul>
-                        {classeSelecionada.subclasses.map((sc, index) => (
-                          <li key={index}>{sc.name}</li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
+                {classeSelecionada.saving_throws && classeSelecionada.saving_throws.length > 0 && (
+                  <p>
+                    <strong>Testes de Resistência:</strong>{' '}
+                    {classeSelecionada.saving_throws.map(st => st.name).join(', ')}
+                  </p>
+                )}
+                {classeSelecionada.subclasses && classeSelecionada.subclasses.length > 0 && (
+                  <>
+                    <h6>Subclasses:</h6>
+                    <ul>
+                      {classeSelecionada.subclasses.map((sc, index) => (
+                        <li key={index}>{sc.name}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
               </Card.Body>
             </Card>
           )}
@@ -479,12 +477,12 @@ function DnDCharacterViewer() {
                   </p>
                 )}
                 {planoDeFundoSelecionado.feature && (
-                    <>
+                  <>
                     <h6>Característica: {planoDeFundoSelecionado.feature.name}</h6>
                     {planoDeFundoSelecionado.feature.desc.map((desc, idx) => (
-                        <p key={idx}>{desc}</p>
+                      <p key={idx}>{desc}</p>
                     ))}
-                    </>
+                  </>
                 )}
               </Card.Body>
             </Card>

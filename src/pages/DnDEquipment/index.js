@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Form, Card, Row, Col, Spinner, Alert, Button } from 'react-bootstrap';
+import './index.css';
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 

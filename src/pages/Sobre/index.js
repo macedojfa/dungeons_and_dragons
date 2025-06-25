@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Card, ListGroup, Badge } from 'react-bootstrap';
-import './Sobre.css'; // Importaremos o CSS que criaremos a seguir
+import './index.css';
 
 function Sobre() {
   return (
@@ -25,7 +25,7 @@ function Sobre() {
             <ListGroup.Item><strong>Senha:</strong> 12345</ListGroup.Item>
           </ListGroup>
           <Card.Text>
-            <Badge bg="warning" text="dark">Atenção!</Badge> Para testar a funcionalidade de auditoria, será necessário ir até <strong>Menu.js</strong> e colocar em 'const templateParams' o e-mail para o recebimento do log.
+            <Badge bg="warning" text="dark">Atenção!</Badge> Para testar a funcionalidade de auditoria, será necessário ir até <strong>maim\src\pages\Menu\index.js</strong> e colocar em 'const templateParams' o e-mail para o recebimento do log.
           </Card.Text>
         </Card.Body>
       </Card>

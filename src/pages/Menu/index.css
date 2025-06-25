@@ -1,0 +1,20 @@
+#header, footer {
+background: #b43a3e;
+background: linear-gradient(90deg,rgba(180, 58, 62, 0.29) 0%, rgba(253, 115, 29, 0.53) 52%, rgba(247, 12, 12, 1) 100%);
+}
+nav button{
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.primary-bt, .btn-primary{
+    background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.btn-primary:hover {
+    background-color: rgba(0, 0, 0, 0.5) !important; 
+    color: #f88d00d7 !important;
+}
+
+nav a:hover{
+    opacity: 0.5 !important;
+}
